@@ -23,7 +23,22 @@
   export default {
     components: {
       Header
+    },
+    mounted() {
     }
   }
 
 </script>
+<style>
+  .btn-gold {
+    background-color: hsl(43, 97%, 52%);
+    color:#fff;
+  }
+  .bg-gold {
+    background-color: hsl(43, 97%, 52%);
+    color:#333;
+  }
+  .text-gold {
+    color: hsl(43, 97%, 52%);
+  }
+</style>

@@ -78,8 +78,22 @@
 </template>
 
 <script>
+  import {
+    StoreDB
+  } from '@/services/fireinit.js'
   export default {
+    data() {
+      return {
+        products: ''
+      }
+    },
+    mounted() {
+      this.$store.dispatch('getProducts')
+      this.$store.dispatch('getReviews')
+    },
+    computed: {
 
+    }
   }
 
 </script>

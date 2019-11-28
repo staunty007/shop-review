@@ -27,7 +27,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#fbb710' },
   /*
   ** Global CSS
   */
@@ -37,7 +37,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/fragment.js'
+    '~/plugins/fragment.js',
+    '~/plugins/firebase.js',
+    '~/plugins/localStorage.js'
   ],
   /*
   ** Nuxt.js dev-modules
