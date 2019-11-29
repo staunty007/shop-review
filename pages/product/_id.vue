@@ -62,7 +62,7 @@
             <div class="product-meta-data">
               <div class="line"></div>
               <div class="d-flex justify-content-between">
-                <p class="product-price">₦{{ product.price }}</p>
+                <p class="product-price">₦{{ product.price.toLocaleString() }}</p>
                 <button @click="listReviews = !listReviews" class="btn btn-gold text-dark btn-sm rounded-0">All Reviews
                   <i class="fa fa-caret-right"></i></button>
               </div>
@@ -116,6 +116,13 @@
                   <button type="button" name="addtocart" value="5" class="btn btn-gold rounded-0">Add to
                     cart</button>
                 </form>
+
+                <form action="" class="form-inline d-none">
+                  <input type="file" id="photo">
+                  <button @click.prevent="uploadImg" class="btn btn-primary">Upload</button>
+                </form>
+
+                <img :src="image" class="d-none"  alt="">
               </div>
               <div v-if="toggleReviewForm">
                 <div class="mt-3">
@@ -126,6 +133,7 @@
                     <div class="card-body">
 
                       <form>
+                        <small class="text-center text-danger" v-if="error">{{ error }}</small>
                         <div class="form-group">
                           <label for="">Full Name</label>
                           <input type="text" class="form-control" v-model.trim="review.name">
@@ -166,7 +174,7 @@
                     <small>3 days ago</small>
                   </div>
                   <p class="mb-1">{{ rev.content }}.</p>
-                 <div class="ratings">
+                  <div class="ratings">
                     <i class="fa fa-star text-gold" aria-hidden="true" v-for="index in rev.rating" :key="index"></i>
                   </div>
                 </a>
@@ -181,7 +189,8 @@
 
 <script>
   import {
-    StoreDB
+    StoreDB,
+    Storage
   } from '@/services/fireinit.js'
   export default {
     data() {
@@ -197,14 +206,32 @@
           content: '',
           rating: ''
         },
-        error: [],
+        error: '',
+        image: '',
 
       }
     },
     methods: {
+      uploadImg() {
+      const ref = Storage.ref();
+       const file = document.querySelector('#photo').files[0]
+        const name = (+new Date()) + '-' + file.name;
+        const metadata = {
+          contentType: file.type
+        };
+        const task = ref.child(name).put(file, metadata);
+        task
+          .then(snapshot => snapshot.ref.getDownloadURL())
+          .then((url) => {
+            console.log(url);
+            this.image = url;
+          })
+          .catch(console.error);
+      },
       async addReview() {
         this.review.p_id = this.product.id;
         this.loading = true;
+        this.error = '';
         if (this.review.name == '' || this.review.content == '' || this.review.rating == '') {
           this.error = "Incomplete Form Fields";
           this.loading = false;
@@ -216,6 +243,8 @@
             console.log(res.doc);
             this.toggleReviewForm = false;
             this.$store.dispatch('getReviews')
+            this.selReview.push(this.review);
+            this.review = {p_id:'',name:'',content:'',rating:''}
           })
           .catch((err) => {
             this.loading = false;

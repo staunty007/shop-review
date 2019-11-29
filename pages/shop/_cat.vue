@@ -78,8 +78,8 @@
 
                 <div class="product-meta-data">
                   <div class="line"></div>
-                  <p class="product-price">₦{{ product.price }}</p>
-                  <nuxt-link :to="'/product/' + product.id">
+                  <p class="product-price">₦{{ product.price.toLocaleString() }}</p>
+                  <nuxt-link :to="'/product/' + product.id" class="product-name">
                     <h6>{{ product.name }}</h6>
                   </nuxt-link>
                 </div>
@@ -93,8 +93,6 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </div>
                   <div class="cart">
-                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img
-                        src="/guest/img/core-img/cart.png" alt=""></a>
                   </div>
                 </div>
               </div>
