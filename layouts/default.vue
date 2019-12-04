@@ -7,7 +7,7 @@
         <a href="index.html"><img src="/guest/img/core-img/logo.png" alt=""></a>
       </div>
 
-      <div class="amado-navbar-toggler">
+      <div class="amado-navbar-toggler" @click="toggleSidebar">
         <span></span><span></span><span></span>
       </div>
     </div>
@@ -24,7 +24,10 @@
     components: {
       Header
     },
-    mounted() {
+    methods: {
+      toggleSidebar() {
+        $('.header-area').toggleClass('bp-xs-on');
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="single-product-area section-padding-100 clearfix">
+  <div class="single-product-area clearfix">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -20,7 +20,7 @@
                 <div class="form-group">
                   <div class="form-group">
                     <label for="">Product Name</label>
-                    <input type="text" v-model="product.name" class="form-control col-md-10" id="" placeholder="">
+                    <input type="text" v-model.trim="product.name" class="form-control col-md-10" id="" placeholder="">
                   </div>
                 </div>
                 <div class="form-row">
@@ -35,12 +35,12 @@
                 </div>
                 <div class="form-group">
                   <label for="">Description</label>
-                  <textarea class="form-control" v-model="product.description" id="" rows="3"></textarea>
+                  <textarea class="form-control" v-model.trim="product.description" id="" rows="3"></textarea>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-4">
                     <label for="inputState">Category</label>
-                    <select id="inputState" class="form-control" v-model="product.category">
+                    <select class="form-control" v-model.number="product.category">
                       <option value="1">Food</option>
                       <option value="2">Clothes</option>
                       <option value="3">Accessories</option>
@@ -51,7 +51,9 @@
                     <input type="file" class="form-control" id="photo">
                   </div>
                 </div>
-                <button type="button" class="btn btn-secondary col-3">Add Product</button>
+                <button :disabled="product.category == ''" @click.prevent="addProduct" type="button" class="btn btn-secondary col-xs-12 col-md-3">
+                  {{ loading ? 'Adding...' : 'Add Product' }}
+                </button>
               </form>
             </div>
           </div>
@@ -106,9 +108,15 @@
 </template>
 
 <script>
+  import {
+    StoreDB,
+    Storage
+  } from '@/services/fireinit.js'
   export default {
+  middleware: 'authenticated',
     data() {
       return {
+        loading:false,
         product: {
           name:'',
           price:'',
@@ -118,14 +126,36 @@
           image:'',
           image1:'',
           status:true,
-        }
+        },
+        error:''
       }
     },
     methods: {
-      addProduct() {
-        if (this.image1 != '') {
+      async addProduct() {
+        if (this.product.category == "") {
+          this.error = "Fields Not Complete";
           return;
         }
+        this.loading = true
+        const ref = Storage.ref();
+        const file = document.querySelector('#photo').files[0]
+        const name = (+new Date()) + '-' + file.name;
+        const metadata = {
+          contentType: file.type
+        };
+
+        const task = ref.child(name).put(file, metadata);
+        task.then(snapshot => snapshot.ref.getDownloadURL())
+          .then((url) => {
+            console.log(url);
+            this.product.image = url;
+            StoreDB.collection("products").add(this.product).then(() => {
+              console.log("Product Added Successfully");
+              this.product = {name:'',price:'',quantity:'',category:'',description:'',image:'',image1:'',status:true},
+              this.loading = false;
+            }).catch((err) => console.log(err))
+          })
+          .catch((err) => console.log(err))
       }
     }
   }

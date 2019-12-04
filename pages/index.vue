@@ -1,78 +1,165 @@
 <template>
-  <div class="products-catagories-area clearfix">
-    <div class="amado-pro-catagory clearfix" style="position: relative; height: 1258.47px;">
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 0%; top: 0px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/1.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $180</p>
-            <h4>Modern Chair</h4>
+  <div class="amado_product_area">
+    <div class="container-fluid">
+      <div class="row mt-1">
+
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/4.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">girls-striped-dress</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 33.2516%; top: 0px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/2.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $180</p>
-            <h4>Minimalistic Plant Pot</h4>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/5.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">necklace-detail</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 66.5881%; top: 0px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/3.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $180</p>
-            <h4>Modern Chair</h4>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/6.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">toddler-tuxedo-onesie</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 66.5881%; top: 349px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/4.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $180</p>
-            <h4>Night Stand</h4>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/1.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">black-choker-necklace</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 0%; top: 392px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/5.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $18</p>
-            <h4>Plant Pot</h4>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/7.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">lace-edge-summer-dress</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 33.2516%; top: 558px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/6.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $320</p>
-            <h4>Small Table</h4>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/8.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">kids-fashion-jeans</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 66.5881%; top: 699px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/7.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $318</p>
-            <h4>Metallic Chair</h4>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/9.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">pocket-watch-on-black</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 0%; top: 785px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/8.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $318</p>
-            <h4>Modern Rocking Chair</h4>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-xl-3">
+          <div class="single-product-wrapper">
+
+            <div class="product-img">
+              <img src="/guest/img/pro-img/3.jpg" style="height: 250px;" alt="">
+            </div>
+
+            <div class="product-description d-flex align-items-center justify-content-between">
+
+              <div class="product-meta-data">
+                <a href="#">
+                  <h6 class="text-dark text-uppercase">gathered-summer-dress</h6>
+                </a>
+              </div>
+
+
+            </div>
           </div>
-        </a></div>
-      <div class="single-products-catagory clearfix" style="position: absolute; left: 33.2516%; top: 908px;"><a
-          href="shop.html"><img src="/guest/img/bg-img/9.jpg" alt="">
-          <div class="hover-content">
-            <div class="line"></div>
-            <p>From $318</p>
-            <h4>Home Deco</h4>
-          </div>
-        </a></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -88,12 +175,39 @@
       }
     },
     mounted() {
-      this.$store.dispatch('getProducts')
-      this.$store.dispatch('getReviews')
+      if (navigator.onLine) {
+        this.$store.dispatch('getProducts')
+        this.$store.dispatch('getReviews')
+      }
     },
     computed: {
-
+      user() {
+        return this.$store.getters.activeUser;
+      },
     }
   }
 
 </script>
+
+<style scoped>
+  .main-content-wrapper .amado_product_area {
+    flex: 0 0 calc(95% - 280px);
+    width: calc(95% - 280px);
+    max-width: calc(95% - 280px);
+  }
+
+  @media only screen and (max-width: 767px) {
+    .main-content-wrapper .amado_product_area {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
+      width: 100%;
+      max-width: 100%;
+      -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+      order: 1;
+      padding-top: 50px;
+    }
+  }
+
+</style>

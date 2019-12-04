@@ -1,5 +1,5 @@
 import {auth,StoreDB} from '@/services/fireinit.js'
- 
+export const strict = false
  export const state = () => ({
    user: null,
    profile: null,
@@ -25,21 +25,23 @@ import {auth,StoreDB} from '@/services/fireinit.js'
  export const actions = {
    autoSignIn ({commit, dispatch}, user) {
      StoreDB.collection('users').doc(user.uid).get().then(doc => {
-       commit('setProfile', doc.data());
+       console.log(doc.data())
+      commit('setProfile', doc.data());
      })
      commit('setUser', JSON.parse(JSON.stringify(user)))
+     console.log(JSON.parse(JSON.stringify(user)))
    },
    
    signUpWithEmail({dispatch}, payload) {
      dispatch('autoSignIn', payload.user)
      console.log(payload.user);
-     $nuxt.$router.push('/app');
+     //$nuxt.$router.push('/app');
    },
  
    signInWithEmail({dispatch}, payload) {
      dispatch('autoSignIn', payload.user)
       console.log(payload.user);
-      $nuxt.$router.push('/app');
+      $nuxt.$router.push('/product');
    },
  
    signOut ({commit}) {

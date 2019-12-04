@@ -68,9 +68,9 @@
             <div class="single-product-wrapper">
               <nuxt-link :to="'/product/' + product.id">
                 <div class="product-img">
-                  <img :src="product.image" alt="">
+                  <img :src="product.image" style="height:200px;" alt="">
 
-                  <img class="hover-img" :src="product.image1" alt="">
+                  <img class="hover-img" alt="">
                 </div>
               </nuxt-link>
 
