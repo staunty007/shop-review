@@ -178,6 +178,7 @@
       if (navigator.onLine) {
         this.$store.dispatch('getProducts')
         this.$store.dispatch('getReviews')
+        this.$store.dispatch('getSellers')
       }
     },
     computed: {

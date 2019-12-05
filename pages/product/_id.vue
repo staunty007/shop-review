@@ -38,18 +38,14 @@
                   <i class="fa fa-caret-right"></i></button>
               </div>
 
-              <a href="product-details.html">
+              <a href="#">
                 <h6>{{ product.name }}</h6>
               </a>
 
               <div v-if="!listReviews">
                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
-                  <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
+                  <div class="ratings" v-if="product.rating">
+                    <i class="fa fa-star" aria-hidden="true" v-for="index in product.rating" :key="index"></i>
                   </div>
                   <div class="review">
                     <button @click="toggleReviewForm = !toggleReviewForm" type="button"
@@ -58,8 +54,6 @@
                     </button>
                   </div>
                 </div>
-
-                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
               </div>
             </div>
             <div v-if="!listReviews">
@@ -84,9 +78,20 @@
                           aria-hidden="true"></i></span>
                     </div>
                   </div>
-                  <button type="button" name="addtocart" value="5" class="btn btn-gold rounded-0">Add to
-                    cart</button>
                 </form>
+
+                <div class="row" v-if="seller != null">
+                  <div class="col-md-12"><h5 class="text-gold text-uppercase">Contact Seller</h5></div>
+                  <div class="col-md-7">
+                    <h5>{{ seller.name }}</h5>
+                  </div>
+                  <div class="col-md-5">
+                    <h5>{{ seller.email }}</h5>
+                  </div>
+                  <div class="col-md-4">
+                    <h5>{{ seller.mobile }}</h5>
+                  </div>
+                </div>
 
                 <form action="" class="form-inline d-none">
                   <input type="file" id="photo">
@@ -170,6 +175,7 @@
         toggleReviewForm: false,
         listReviews: false,
         product: null,
+        seller:null,
         selReview: [],
         review: {
           p_id: '',
@@ -213,7 +219,7 @@
             console.log(res.id);
             console.log(res.doc);
             this.toggleReviewForm = false;
-            this.$store.dispatch('getReviews')
+            this.$store.dispatch('calculateRate', this.review);
             this.selReview.push(this.review);
             this.review = {p_id:'',name:'',content:'',rating:''}
           })
@@ -227,6 +233,7 @@
         setTimeout(() => {
           this.product = this.getProducts.filter(e => e.id == this.$route.params.id)[0];
           this.selReview = this.getReviews.filter(e => e.p_id == this.$route.params.id);
+          this.seller = this.getSellers.filter(e => e.id == this.product.seller)[0];
         }, 1000);
       }
 
@@ -240,6 +247,9 @@
       },
       getReviews() {
         return this.$store.getters.allReviews;
+      },
+      getSellers() {
+        return this.$store.getters.allSellers;
       }
     }
   }

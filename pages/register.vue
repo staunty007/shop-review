@@ -79,8 +79,10 @@
           const response = await auth.createUserWithEmailAndPassword(this.form.email, this.form.password);
           await StoreDB.collection('users').doc(response.user.uid).set({
             name: this.form.name,
+            email: this.form.email,
             mobile: this.form.mobile,
-            address: this.form.address
+            address: this.form.address,
+            status: true,
           });
           this.loading = false
           this.$store.dispatch('signInWithEmail', response);

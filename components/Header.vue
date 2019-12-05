@@ -29,7 +29,7 @@
           <li>
             <nuxt-link to="/product" class="font-weight-bold">Add Product</nuxt-link>
           </li>
-          <li><a href="#" class="font-weight-bold">{{ user.profile.name }}</a></li>
+          <li><nuxt-link to="/store" class="font-weight-bold">{{ user.profile.name ? user.profile.name : user.email }}</nuxt-link></li>
           <li><a href="#" @click="logoutUser" class="font-weight-bold">LOGOUT</a></li>
         </div>
       </ul>

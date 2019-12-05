@@ -46,7 +46,7 @@
                       <option value="3">Accessories</option>
                     </select>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6 d-none">
                     <label for="">Image</label>
                     <input type="file" class="form-control" id="photo">
                   </div>
@@ -55,7 +55,9 @@
                   class="btn btn-secondary col-xs-12 col-md-3">
                   {{ loading ? 'Adding...' : 'Add Product' }}
                 </button>
+                <button class="btn btn-primary"><nuxt-link class="text-light" to="/store">Back</nuxt-link></button>
               </form>
+              <h5 v-if="success" class="text-success mt-3">{{ success }}</h5>
             </div>
           </div>
         </div>
@@ -119,19 +121,9 @@
     data() {
       return {
         loading: false,
-        product: {
-          name: '',
-          price: '',
-          quantity: '',
-          category: '',
-          description: '',
-          image: '',
-          image1: '',
-          seller:'',
-          rating:5,
-          status: true,
-        },
-        error: ''
+        product: {},
+        error: '',
+        success:''
       }
     },
     methods: {
@@ -141,43 +133,34 @@
           return;
         }
         this.loading = true
-        const ref = Storage.ref();
-        const file = document.querySelector('#photo').files[0]
-        const name = (+new Date()) + '-' + file.name;
-        const metadata = {
-          contentType: file.type
-        };
+        this.product.seller = this.user.uid;
+        const productId = this.product.id;
+        this.product.rating = this.product.rating ? this.product.rating : 5 ;
+        delete this.product.id;
+        StoreDB.collection("products").doc(productId).update(this.product).then(() => {
+            console.log("Product Updated Successfully");
+            this.success = "Product Updated Successfully";
+            this.loading = false;
+            this.$store.dispatch('getProducts');
+        }).catch((err) => console.log(err))
 
-        const task = ref.child(name).put(file, metadata);
-        task.then(snapshot => snapshot.ref.getDownloadURL())
-          .then((url) => {
-            console.log(url);
-            this.product.image = url;
-            this.product.seller = this.user.uid;
-            StoreDB.collection("products").add(this.product).then(() => {
-              console.log("Product Added Successfully");
-              this.product = {
-                  name: '',
-                  price: '',
-                  quantity: '',
-                  category: '',
-                  description: '',
-                  image: '',
-                  image1: '',
-                  seller:'',
-                  rating:5,
-                  status: true
-                },
-                this.loading = false;
-            }).catch((err) => console.log(err))
-          })
-          .catch((err) => console.log(err))
+      },
+      getProduct() {
+        setTimeout(() => {
+          this.product = this.getProducts.filter(e => e.id == this.$route.params.id)[0];
+        }, 1000);
       }
+    },
+    mounted() {
+      this.getProduct()
     },
     computed: {
       user() {
         return this.$store.getters.activeUser
-      }
+      },
+      getProducts() {
+        return this.$store.getters.allProducts;
+      },
     },
   }
 

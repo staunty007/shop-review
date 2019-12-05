@@ -85,12 +85,8 @@
                 </div>
 
                 <div class="ratings-cart text-right">
-                  <div class="ratings">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
+                   <div class="ratings" v-if="product.rating">
+                    <i class="fa fa-star" aria-hidden="true" v-for="index in product.rating" :key="index"></i>
                   </div>
                   <div class="cart">
                   </div>

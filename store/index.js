@@ -5,6 +5,7 @@ export const strict = false
    profile: null,
    products: '',
    reviews:'',
+   sellers:'',
  });
  
  export const mutations = {
@@ -20,6 +21,9 @@ export const strict = false
    setReviews (state, payload) {
      state.reviews = payload
    },
+   setSellers (state, payload) {
+     state.sellers = payload
+   }
  };
  
  export const actions = {
@@ -74,6 +78,37 @@ export const strict = false
        commit('setReviews', allReviews);
      });
    },
+   async getSellers ({commit})  {
+     await StoreDB.collection('users').get().then(res => {
+       const allSellers = [];
+       res.forEach(doc => {
+         let seller = doc.data()
+         seller.id = doc.id
+         allSellers.push(seller);
+       })
+       commit('setSellers', allSellers);
+     });
+   },
+
+   async calculateRate({dispatch, getters}, payload) {
+    const initRev = getters.allReviews
+    initRev.push(payload);
+    const getRev = initRev.filter(e => e.p_id == payload.p_id);
+    const noOfRev = getRev.length;
+    const newAverage = [];
+    getRev.forEach(e => newAverage.push(e.rating/5));
+    const getTotalRating = newAverage.reduce((a, b) => a + b, 0);
+    const avgRating = Math.round((getTotalRating/noOfRev) * 5);
+    console.log(avgRating);
+    const data = {id: payload.p_id, rating: avgRating};
+    dispatch('updateProductRating', data)
+   },
+
+   async updateProductRating({ dispatch }, data) {
+    await StoreDB.collection("products").doc(data.id).update({
+        "rating": data.rating
+    }).then(() => dispatch('getReviews'));
+   }
 
  };
  
@@ -88,5 +123,8 @@ export const strict = false
    },
    allReviews: (state) => {
        return state.reviews
+   },
+   allSellers: (state) => {
+     return state.sellers
    }
  };
