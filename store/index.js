@@ -67,6 +67,12 @@ export const strict = false
        commit('setProducts', allProducts);
      });
    },
+   
+   removeProduct({commit, getters}, productId) {
+    let newProducts = getters.allProducts.filter(e => e.id != productId);
+    commit('setProducts', newProducts);
+   },
+
    async getReviews ({commit})  {
      await StoreDB.collection('reviews').get().then(res => {
        const allReviews = [];

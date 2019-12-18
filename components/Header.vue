@@ -6,7 +6,7 @@
     </div>
 
     <div class="logo">
-      <nuxt-link to="/"><img src="/guest/img/core-img/logo.png" alt=""></nuxt-link>
+      <nuxt-link to="/"><img src="/guest/img/core-img/logo.jpg" style="height: 100px;" alt=""></nuxt-link>
     </div>
 
     <nav class="amado-nav">

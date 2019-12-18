@@ -10,8 +10,8 @@
                 REGISTER
               </div>
               <div class="card-body">
+                <p class="text-danger text-center" v-if="error">{{ error }}</p>
                 <form>
-
                   <div class="form-group">
                     <label for="inputAddress">Seller/Company Name</label>
                     <input type="text" name="name" v-model="form.name" class="form-control col-md-10" placeholder="Mojavi Fashion Wears">
@@ -90,7 +90,7 @@
           console.log('Login Successfull');
         } catch (error) {
           this.loading = false
-          this.error = error
+          this.error = error.message
         }
       }
     }

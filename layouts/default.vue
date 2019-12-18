@@ -4,7 +4,7 @@
     <div class="mobile-nav">
 
       <div class="amado-navbar-brand">
-        <a href="index.html"><img src="/guest/img/core-img/logo.png" alt=""></a>
+        <a href="index.html"><img src="/guest/img/core-img/logo.jpg" style="height: 50px;" alt=""></a>
       </div>
 
       <div class="amado-navbar-toggler" @click="toggleSidebar">

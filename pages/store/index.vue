@@ -22,9 +22,9 @@
                   <td>{{ product.price.toLocaleString() }}</td>
                   <td>{{ product.quantity }}</td>
                   <td>
-                      <nuxt-link :to="`/store/${product.id}`" class="btn btn-info">Edit</nuxt-link>
-                      <button class="btn btn-danger">Delete</button>
-                </td>
+                    <nuxt-link :to="`/store/${product.id}`" class="btn btn-info">Edit</nuxt-link>
+                    <button type="button" :id="'btn-'+product.id" @click="deleteProduct(product)" class="btn btn-danger">Delete</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -32,6 +32,25 @@
         </div>
       </div>
     </div>
+    <div class="modal fade d-none openModal"  tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Confirm Delete</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container d-flex justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </template>
@@ -60,10 +79,28 @@
         setTimeout(() => {
           this.products = this.getAllProducts.filter(e => e.seller == this.user.uid);
         }, 1000);
+      },
+      async deleteProduct(product) {
+        $('#btn-' + product.id).html("Deleting...");
+        console.log(this.$store.getters.allProducts);
+        try {
+          let res = await StoreDB.collection("products").doc(product.id).delete()
+            $('#btn-' + product.id).html("Deleted");
+            this.reset(product);
+            console.log("Document successfully deleted!");
+        } catch (error) {
+          $('#btn-' + product.id).html("Delete");
+          console.error("Error removing document: ", error);
+          
+        };
+      },
+      async reset(product) {
+        await this.$store.dispatch("removeProduct",product.id);
+        this.products = this.$store.getters.allProducts.filter(e => e.seller == this.user.uid);
       }
     },
     mounted() {
-        this.getProduct();
+      this.getProduct();
     },
     computed: {
       user() {

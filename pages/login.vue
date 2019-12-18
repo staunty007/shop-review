@@ -10,9 +10,8 @@
                 LOGIN
               </div>
               <div class="card-body">
+                <p class="text-danger text-center" v-if="error">{{ error }}</p>
                 <form>
-
-
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <label for="inputEmail4">Email</label>
@@ -52,7 +51,7 @@
           email: '',
           password: ''
         },
-        error: [],
+        error: '',
         success: ''
       }
     },
@@ -67,7 +66,7 @@
           //console.log('Login Successfull');
         } catch (error) {
           this.loading = false
-          this.error = error
+          this.error = error.message
         }
       }
     }
