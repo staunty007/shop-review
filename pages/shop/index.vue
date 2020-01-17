@@ -18,7 +18,7 @@
     </div>
     <div class="amado_product_area section-padding-100">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row" v-if="0">
           <div class="col-12">
             <div class="product-topbar d-xl-flex align-items-end justify-content-between">
 
@@ -91,7 +91,7 @@
 
         </div>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12"  v-if="0">
 
             <nav aria-label="navigation">
               <ul class="pagination justify-content-end mt-50">

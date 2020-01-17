@@ -214,6 +214,14 @@
           this.loading = false;
           return;
         }
+
+        const getMatchedUser = this.getReviews.filter(e => e.name.toLowerCase() == this.review.name.toLowerCase())
+        if (getMatchedUser.length > 0) {
+          this.error = "You Already Made a Review"; 
+           this.loading = false;
+          return;
+        }
+
         await StoreDB.collection("reviews").add(this.review).then((res) => {
             this.loading = false;
             console.log(res.id);
